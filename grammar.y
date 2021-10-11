@@ -1,3 +1,5 @@
+//Samuel Yaeger, 113454853
+//Eric Chen, 113521106
 %language "c"
 %skeleton "glr.c" 
 %require "3.0.2"
@@ -47,8 +49,6 @@ extern char * yytext;
 %token T_INTEGER
 %token T_FLOAT
 %token T_LITERAL_STR
-
-
 
 %%
 
