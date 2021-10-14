@@ -102,15 +102,15 @@ a_term : a_term T_MUL a_fact
     | a_fact
     ;
 
-a_fact : 
-    | 
-    | 
-    | 
-    | 
+a_fact : varref
+    | T_NUM
+    | T_LITERAL_STR
+    | T_SUB a_fact
+    | '(' a_expr ')'
     ;
 
-varref : 
-  | 
+varref : T_ID
+  | '[' varref ',' a_expr ']'
   ;
 
 l_expr : l_expr T_AND l_term
@@ -121,11 +121,10 @@ l_term : l_term T_OR l_fact
   | l_fact
   ;
 
-l_fact : 
-  | 
-  | 
+l_fact : l_fact oprel a_expr
+  | a_expr
+  | '(' l_expr ')'
   ;
-
 
 oprel : T_LT
   | T_GT
@@ -135,17 +134,16 @@ oprel : T_LT
   | T_NEQ
   ;
 
-
 read : T_READ varlist ;
 
 write: T_WRITE expr_list;
 
-varlist : 
-      | 
+varlist : varlist ',' varref
+      | varref
       ;
 
-expr_list : 
-  | 
+expr_list : a_expr ';' expr_list
+  | a_expr
   ;
 
 %%
