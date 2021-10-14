@@ -77,7 +77,7 @@ foreach : T_FOREACH T_ID T_IN '(' T_NUM ':' T_ID ')' stmt
 while : 
     ;
 
-repeat : 
+repeat : T_REPEAT stmt_list T_UNTIL l_expr
   ;
 
 if_stmt : 
@@ -139,7 +139,7 @@ varlist : varlist ',' varref
       | varref
       ;
 
-expr_list : a_expr ';' expr_list
+expr_list : a_expr ',' expr_list
   | a_expr
   ;
 
